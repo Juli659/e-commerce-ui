@@ -21,7 +21,8 @@ const product: ProductType = {
     },
 }
 
-export const generateMetadata = async ({params}:{params:{id:string}})=>{
+export const generateMetadata = async ({params}:{params: Promise<{id:string}>})=> {
+  const { id } = await params;
 
 
 // TODO:get the product from db
