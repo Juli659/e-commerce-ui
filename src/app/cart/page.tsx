@@ -4,7 +4,7 @@ import { useSearchParams, useRouter } from "next/navigation";
 import { ShippingFormInputs } from "../types";
 import { ArrowRight, Trash2 } from "lucide-react";
 import ShippingForm from "../components/ShippingForm";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import PaymentForm from "../components/PaymentForm";
 import Image from "next/image";
 import useCartStore from "../stores/cartStore";
@@ -15,7 +15,7 @@ const steps = [
   { id: 3, title: "Payment Method" },
 ];
 
-const CartPage = () => {
+const CartContent = () => {
   const [isMounted, setIsMounted] = useState(false);
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -166,4 +166,10 @@ const CartPage = () => {
   );
 };
 
-export default CartPage;
+export default function CartPage() {
+  return (
+    <Suspense fallback={<div>Loading cart...</div>}>
+      <CartContent />
+    </Suspense>
+  );
+}
