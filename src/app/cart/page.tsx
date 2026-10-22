@@ -28,9 +28,7 @@ const CartPage = () => {
 
   // 2. COMPUTE VALUES AFTER 'cart' IS DEFINED
   const subtotal = cart.reduce(
-    (acc, item) => acc + item.price * item.quantity,
-    0
-  );
+    (acc: number, item: any) => acc + item.price * item.quantity, 0);
   const discount = 10;
   const shippingFee = 10;
   const total = subtotal - discount + shippingFee;
